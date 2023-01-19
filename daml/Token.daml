@@ -1,0 +1,51 @@
+module Token where
+
+-- behaviour
+-- datamodel
+-- rights/obligations
+template Token
+ with
+    issuer: Party
+    owner: Party
+    description: Text
+    userAdmin: Party -- make sure that issuer and owner are legit
+    issuued: Time
+    lastPrice: Decimal
+    currency: Text
+
+    where
+        signatory issuer, userAdmin
+
+            controller owner can
+                Offer: (ContractId TokenOffer)
+                with
+                    newOwner: Party
+                    price: Decimal
+                
+                    do
+                        create TokenOffer with ..
+
+template TokenOffer
+with
+    issuer: Party
+    owner: Party
+    description: Text
+    userAdmin: Party
+    issuued: Time
+    newOwner: Party
+    price: Decimal
+    lastPrice: Decimal
+    currency: Text
+
+
+    where
+        signatory issuer, userAdmin, owner
+
+        controller newOwner can
+            AcceptToken: ContractId Token
+                do
+                    create Token
+                        with
+                            owner = newOwner
+                            lastPrice = price
+                            ..

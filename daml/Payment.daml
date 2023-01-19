@@ -1,0 +1,20 @@
+module Payment where
+
+template Payable
+    with
+        amout: Decimal
+        currency: Text
+        from: Party
+        to: Party
+        reference: Text
+    
+    where
+        signatory from
+
+        controller from can
+
+            ClaimPaid: ContractId PaymentClaim
+                with
+                    transactionId: Text
+                do
+                    create PaymentClaim with ..

@@ -26,26 +26,26 @@ template Token
                         create TokenOffer with ..
 
 template TokenOffer
-with
-    issuer: Party
-    owner: Party
-    description: Text
-    userAdmin: Party
-    issuued: Time
-    newOwner: Party
-    price: Decimal
-    lastPrice: Decimal
-    currency: Text
+    with
+        issuer: Party
+        owner: Party
+        description: Text
+        userAdmin: Party
+        issuued: Time
+        newOwner: Party
+        price: Decimal
+        lastPrice: Decimal
+        currency: Text
 
 
-    where
-        signatory issuer, userAdmin, owner
+        where
+            signatory issuer, userAdmin, owner
 
-        controller newOwner can
-            AcceptToken: ContractId Token
-                do
-                    create Token
-                        with
-                            owner = newOwner
-                            lastPrice = price
-                            ..
+            controller newOwner can
+                AcceptToken: ContractId Token
+                    do
+                        create Token
+                            with
+                                owner = newOwner
+                                lastPrice = price
+                                ..

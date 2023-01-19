@@ -18,3 +18,8 @@ template Payable
                     transactionId: Text
                 do
                     create PaymentClaim with ..
+
+
+template PlaymentClaim
+with
+    amount: Decimal

@@ -1,7 +1,2 @@
-module Token where
 
--- behaviour
--- datamodel
--- rights/obligations
-template Token
-with
+

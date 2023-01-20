@@ -72,3 +72,4 @@ of `npm run-script build`).
 
 Once both files are uploaded, you need to tell Daml Hub to deploy them. A few
 seconds later, your website should be up and running.
+# RenderChainApp
